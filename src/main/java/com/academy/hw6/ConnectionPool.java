@@ -73,10 +73,6 @@ public class ConnectionPool {
     }
   }
 
-  public synchronized void run(Request request) {
-    ExecutorService executorService = Executors.newFixedThreadPool(20);
-
-  }
 
   public void addRequestToQueue (Request request) {
     requestQueue.add(request);

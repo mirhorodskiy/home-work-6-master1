@@ -22,7 +22,7 @@ public class RequestQueue {
   }
   public void clearQueue() {
     while (!requestQueue.isEmpty()) {
-      System.out.println(requestQueue.poll() + "was not proceed");
+      System.out.println(requestQueue.poll().getRequestTitle() + " was not processed");
     }
   }
 

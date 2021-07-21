@@ -1,7 +1,5 @@
 package com.academy.hw6;
 
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicReference;
@@ -9,8 +7,21 @@ import java.util.concurrent.atomic.AtomicReference;
 public class Main {
   public static void main(String[] args) {
     ConnectionPool connectionPool = new ConnectionPool(2,10);
-    ExecutorService executorService = Executors.newFixedThreadPool(20);
-    boolean flag = true;
+    ExecutorService executorService = Executors.newFixedThreadPool(30);
+    ExecutorService executorService1 = Executors.newSingleThreadExecutor();
+
+    //clear queue in interval
+    executorService1.execute(() -> {
+      while (true) {
+        try {
+          Thread.sleep(1000);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+        connectionPool.requestQueue.clearQueue();
+
+      }
+    });
 
     for (int i = 0; i < 200; i++) {
       AtomicReference<Request> request = new AtomicReference<>(new Request());
