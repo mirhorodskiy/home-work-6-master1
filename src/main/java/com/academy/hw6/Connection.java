@@ -4,9 +4,14 @@ import java.util.Objects;
 
 public class Connection {
   private final String connectionName;
+  private static int connNumber = 0;
 
-  public Connection(String connectionName) {
-    this.connectionName = connectionName;
+//  public Connection(String connectionName) {
+//    this.connectionName = connectionName;
+//  }
+  public Connection() {
+    connectionName = "Connection #" + connNumber;
+    connNumber++;
   }
 
   public String getConnectionName() {
@@ -29,7 +34,7 @@ public class Connection {
   @Override
   public String toString() {
     return "Connection{" +
-        "connectionName='" + connectionName + '\'' +
-        '}';
+            "connectionName='" + connectionName + '\'' +
+            '}';
   }
 }
